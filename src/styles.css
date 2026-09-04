@@ -153,11 +153,50 @@ caption { text-align: start; color: var(--muted); font-size: .85rem; padding-bot
 .qbtn.right { background: #dff1e7; border-color: var(--das); color: var(--das); }
 .qbtn.wrong { background: #fbe4ec; border-color: var(--die); color: var(--die); }
 .qbtn:disabled { cursor: default; }
-.quiz-fb { min-height: 2.4rem; font-weight: 600; }
-.quiz-fb .ok { color: var(--das); }
-.quiz-fb .no { color: var(--die); }
+.quiz-fb { min-height: 2.4rem; font-weight: 600; white-space: pre-line; }
+.quiz-fb .ok, .quiz-fb.ok { color: var(--das); }
+.quiz-fb .no, .quiz-fb.no { color: var(--die); }
 .progress { height: 6px; background: #ece7de; border-radius: 999px; overflow: hidden; margin: .2rem 0 .9rem; }
 .progress i { display: block; height: 100%; background: var(--action); transition: width .2s ease; }
+
+/* Textual quiz counters (question x/y, score). Distinct from .progress, which is
+   a 6px overflow-hidden bar and swallows any text placed inside it. */
+.quiz-meta { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; margin: .2rem 0 .9rem; }
+.quiz-meta span {
+  font-size: .87rem; font-weight: 700; color: var(--muted);
+  background: #fff; border: 1px solid var(--border); border-radius: 999px; padding: .15rem .7rem;
+}
+
+/* ---------- level test ---------- */
+.result-band {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 1.2rem; box-shadow: var(--shadow); text-align: center;
+}
+.result-level { font-family: Tajawal, sans-serif; font-size: clamp(2.2rem, 9vw, 3.4rem); font-weight: 800; color: var(--action); line-height: 1.1; }
+.result-score { color: var(--muted); font-size: .95rem; }
+.bars { display: grid; gap: .55rem; margin: 1rem 0; }
+.bar-row { display: grid; grid-template-columns: 8.5rem 1fr 3.2rem; gap: .6rem; align-items: center; font-size: .92rem; }
+.bar-track { height: 10px; background: #ece7de; border-radius: 999px; overflow: hidden; }
+.bar-track i { display: block; height: 100%; background: var(--action); }
+.bar-row.weak .bar-track i { background: var(--die); }
+@media (max-width: 560px) {
+  .bar-row { grid-template-columns: 1fr 2.6rem; }
+  .bar-row .bar-track { grid-column: 1 / -1; }
+}
+
+/* ---------- study plan checklist ---------- */
+.week { margin-bottom: .6rem; }
+.week > summary { display: flex; align-items: center; gap: .55rem; flex-wrap: wrap; }
+.week-badge {
+  font-size: .74rem; font-weight: 700; padding: .1rem .55rem; border-radius: 999px;
+  background: #ece7de; color: var(--muted); white-space: nowrap;
+}
+.week.done > summary .week-badge { background: #dff1e7; color: var(--das); }
+.task { display: flex; gap: .55rem; align-items: flex-start; padding: .3rem 0; }
+.task input { width: 1.15rem; height: 1.15rem; margin-top: .35rem; accent-color: var(--action); flex: 0 0 auto; }
+.task label { cursor: pointer; font-size: .95rem; }
+.task input:checked + label { color: var(--muted); text-decoration: line-through; }
+.plan-head { display: flex; flex-wrap: wrap; gap: .7rem; align-items: center; justify-content: space-between; }
 
 /* ---------- content ---------- */
 .prose { max-width: 46rem; }
