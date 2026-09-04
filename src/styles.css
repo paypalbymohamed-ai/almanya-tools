@@ -233,3 +233,30 @@ details p { margin: .6rem 0 0; color: var(--muted); }
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; animation: none !important; }
 }
+
+/* ── قوالب المراسلات الرسمية (/vorlagen/) ─────────────────────────── */
+.vt-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; align-items: start; }
+.vt-cols > div { display: flex; flex-direction: column; gap: 1rem; }
+.vt-fields { display: grid; gap: .7rem; }
+.vt-field { display: flex; flex-direction: column; gap: .25rem; }
+.vt-field label { font-weight: 600; font-size: .9rem; }
+.vt-field input, .vt-field select {
+  width: 100%; box-sizing: border-box; font: inherit; font-size: .95rem;
+  padding: .5rem .65rem; border: 2px solid var(--border); border-radius: 10px;
+  background: #fff; color: inherit;
+}
+.vt-field input:focus, .vt-field select:focus { border-color: var(--action); outline: none; }
+.vt-actions { display: flex; flex-wrap: wrap; gap: .45rem; }
+.vt-actions .btn { font-size: .9rem; padding: .45rem .8rem; }
+.vt-out-card { position: sticky; top: .8rem; }
+.vt-out {
+  font-family: "IBM Plex Sans", ui-monospace, monospace; font-size: .9rem; line-height: 1.7;
+  white-space: pre-wrap; word-break: break-word; text-align: left;
+  background: #fbfaf7; border: 1px solid var(--border); border-radius: 10px;
+  padding: .9rem 1rem; margin: .7rem 0 .5rem; max-height: 30rem; overflow: auto;
+}
+
+@media (max-width: 900px) {
+  .vt-cols { grid-template-columns: 1fr; }
+  .vt-out-card { position: static; }
+}
