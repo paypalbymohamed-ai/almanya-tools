@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://almanya-tools-bfzjg.surething.host/sitemap.xml
+Sitemap: https://almanya-tools.pages.dev/sitemap.xml
