@@ -13,6 +13,7 @@ export default defineConfig({
         main: resolve(__dirname, "index.html"),
         verben: resolve(__dirname, "verben/index.html"),
         derdiedas: resolve(__dirname, "der-die-das/index.html"),
+        faelle: resolve(__dirname, "faelle/index.html"),
         about: resolve(__dirname, "about/index.html"),
         contact: resolve(__dirname, "contact/index.html"),
         privacy: resolve(__dirname, "privacy/index.html"),
