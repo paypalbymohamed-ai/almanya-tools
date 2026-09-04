@@ -2,7 +2,7 @@
 
 أدوات مجانية لتعلّم اللغة الألمانية موجَّهة للناطقين بالعربية.
 
-**الموقع المنشور:** https://almanya-tools-bfzjg.surething.host
+**الموقع المنشور:** https://almanya-tools.pages.dev
 
 ## الأدوات
 
