@@ -53,21 +53,38 @@ a:hover { color: var(--action-hover); }
   backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--border);
 }
-.site-head .wrap { display: flex; align-items: center; gap: 1rem; min-height: 58px; flex-wrap: wrap; }
-.brand { font-family: Tajawal, sans-serif; font-weight: 800; font-size: 1.12rem; text-decoration: none; color: var(--ink); }
+/* nowrap keeps brand + nav on one line; the mobile block re-enables wrapping
+   only so the open menu panel can drop below the bar. */
+.site-head .wrap { display: flex; align-items: center; gap: 1rem; min-height: 58px; flex-wrap: nowrap; }
+.brand {
+  font-family: Tajawal, sans-serif; font-weight: 800; font-size: 1.12rem;
+  text-decoration: none; color: var(--ink);
+  display: inline-flex; align-items: center; min-height: 44px; flex: 0 0 auto;
+}
 .brand span { color: var(--action); }
-.site-nav { display: flex; gap: .35rem; margin-inline-start: auto; flex-wrap: wrap; }
+
+/* One row, always. Wrapping here is what used to stack the nav four rows deep
+   and let a 228px sticky header cover the page content underneath. */
+.site-nav {
+  display: flex; gap: .35rem; margin-inline-start: auto;
+  flex-wrap: nowrap; min-width: 0; flex: 1 1 auto; justify-content: flex-end;
+  overflow-x: auto; -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.site-nav::-webkit-scrollbar { display: none; }
 .site-nav a {
-  text-decoration: none; color: var(--muted); font-size: .93rem; font-weight: 600;
-  padding: .35rem .6rem; border-radius: 999px;
+  text-decoration: none; color: var(--muted); font-size: .97rem; font-weight: 600;
+  padding: .35rem .7rem; border-radius: 999px;
+  display: inline-flex; align-items: center; min-height: 44px; white-space: nowrap;
 }
 .site-nav a:hover { background: #ece7de; color: var(--ink); }
 .site-nav a[aria-current="page"] { background: var(--action); color: #fff; }
 
 /* ---------- blocks ---------- */
 main { padding: 1.5rem 0 3rem; }
-.crumbs { font-size: .85rem; color: var(--muted); margin-bottom: 1rem; }
-.crumbs a { text-decoration: none; }
+.crumbs { font-size: .9rem; color: var(--muted); margin-bottom: 1rem; }
+/* negative margin keeps the visual spacing while the tap area grows */
+.crumbs a { text-decoration: none; display: inline-block; padding: .5rem .2rem; margin: -.5rem 0; }
 .lede { font-size: 1.06rem; color: var(--muted); max-width: 46rem; }
 
 .card {
@@ -83,7 +100,7 @@ main { padding: 1.5rem 0 3rem; }
 .tool-card:hover { border-color: var(--action); }
 .soon { opacity: .72; box-shadow: none; }
 .badge {
-  display: inline-block; font-size: .74rem; font-weight: 700; padding: .1rem .5rem;
+  display: inline-block; font-size: .88rem; font-weight: 700; padding: .1rem .55rem;
   border-radius: 999px; background: #ece7de; color: var(--muted);
 }
 .badge.live { background: #dff1e7; color: var(--das); }
@@ -104,11 +121,12 @@ main { padding: 1.5rem 0 3rem; }
 .btn:hover { background: var(--action-hover); }
 .btn.ghost { background: #fff; color: var(--action); border: 2px solid var(--border); }
 .btn.ghost:hover { border-color: var(--action); background: #fff; }
-.hint { font-size: .87rem; color: var(--muted); margin-top: .5rem; }
+.hint { font-size: .92rem; color: var(--muted); margin-top: .5rem; }
 .chips { display: flex; gap: .4rem; flex-wrap: wrap; margin-top: .6rem; }
 .chip {
-  font: inherit; font-size: .88rem; cursor: pointer; background: #fff; color: var(--ink);
-  border: 1px solid var(--border); border-radius: 999px; padding: .3rem .75rem; min-height: 34px;
+  font: inherit; font-size: .94rem; cursor: pointer; background: #fff; color: var(--ink);
+  border: 1px solid var(--border); border-radius: 999px; padding: .3rem .9rem; min-height: 44px;
+  display: inline-flex; align-items: center;
 }
 .chip:hover { border-color: var(--action); color: var(--action); }
 .chip[aria-pressed="true"] { background: var(--action); color: #fff; border-color: var(--action); }
@@ -119,15 +137,16 @@ main { padding: 1.5rem 0 3rem; }
   border: 1px solid var(--border); border-radius: 8px; padding: .3rem .6rem;
   background: #faf8f5; font-size: .95rem;
 }
-.part b { display: block; font-size: .72rem; color: var(--muted); font-weight: 600; letter-spacing: .02em; }
-.aux { font-size: .88rem; color: var(--muted); }
+.part b { display: block; font-size: .88rem; color: var(--muted); font-weight: 600; letter-spacing: .02em; }
+.part .de, .part { font-size: 1rem; }
+.aux { font-size: .92rem; color: var(--muted); }
 
 .tbl-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
 table { border-collapse: collapse; width: 100%; font-size: .96rem; }
 th, td { text-align: start; padding: .5rem .6rem; border-bottom: 1px solid var(--border); }
-thead th { font-size: .82rem; color: var(--muted); font-weight: 700; white-space: nowrap; }
+thead th { font-size: .9rem; color: var(--muted); font-weight: 700; white-space: nowrap; }
 tbody tr:hover { background: #faf8f5; }
-caption { text-align: start; color: var(--muted); font-size: .85rem; padding-bottom: .4rem; }
+caption { text-align: start; color: var(--muted); font-size: .9rem; padding-bottom: .4rem; }
 
 .gender { font-weight: 700; }
 .g-der { color: var(--der); }
@@ -163,7 +182,7 @@ caption { text-align: start; color: var(--muted); font-size: .85rem; padding-bot
    a 6px overflow-hidden bar and swallows any text placed inside it. */
 .quiz-meta { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; margin: .2rem 0 .9rem; }
 .quiz-meta span {
-  font-size: .87rem; font-weight: 700; color: var(--muted);
+  font-size: .92rem; font-weight: 700; color: var(--muted);
   background: #fff; border: 1px solid var(--border); border-radius: 999px; padding: .15rem .7rem;
 }
 
@@ -186,15 +205,15 @@ caption { text-align: start; color: var(--muted); font-size: .85rem; padding-bot
 
 /* ---------- study plan checklist ---------- */
 .week { margin-bottom: .6rem; }
-.week > summary { display: flex; align-items: center; gap: .55rem; flex-wrap: wrap; }
+.week > summary { display: flex; align-items: center; gap: .55rem; flex-wrap: wrap; min-height: 44px; }
 .week-badge {
-  font-size: .74rem; font-weight: 700; padding: .1rem .55rem; border-radius: 999px;
+  font-size: .88rem; font-weight: 700; padding: .1rem .55rem; border-radius: 999px;
   background: #ece7de; color: var(--muted); white-space: nowrap;
 }
 .week.done > summary .week-badge { background: #dff1e7; color: var(--das); }
 .task { display: flex; gap: .55rem; align-items: flex-start; padding: .3rem 0; }
-.task input { width: 1.15rem; height: 1.15rem; margin-top: .35rem; accent-color: var(--action); flex: 0 0 auto; }
-.task label { cursor: pointer; font-size: .95rem; }
+.task input { width: 1.3rem; height: 1.3rem; margin-top: .5rem; accent-color: var(--action); flex: 0 0 auto; }
+.task label { cursor: pointer; font-size: .97rem; padding: .35rem 0; }
 .task input:checked + label { color: var(--muted); text-decoration: line-through; }
 .plan-head { display: flex; flex-wrap: wrap; gap: .7rem; align-items: center; justify-content: space-between; }
 
@@ -206,12 +225,13 @@ details {
   background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
   padding: .7rem .9rem; margin-bottom: .5rem;
 }
-details summary { cursor: pointer; font-weight: 700; }
+details summary { cursor: pointer; font-weight: 700; padding: .55rem 0; min-height: 44px; }
 details p { margin: .6rem 0 0; color: var(--muted); }
 .related { display: flex; flex-wrap: wrap; gap: .5rem; }
 .related a {
   background: #fff; border: 1px solid var(--border); border-radius: 999px;
-  padding: .35rem .8rem; text-decoration: none; font-size: .93rem; font-weight: 600;
+  padding: .35rem .9rem; text-decoration: none; font-size: .95rem; font-weight: 600;
+  display: inline-flex; align-items: center; min-height: 44px;
 }
 .related a:hover { border-color: var(--action); }
 .note {
@@ -220,13 +240,12 @@ details p { margin: .6rem 0 0; color: var(--muted); }
 }
 
 .site-foot { border-top: 1px solid var(--border); padding: 1.6rem 0 2.5rem; color: var(--muted); font-size: .9rem; }
-.site-foot nav { display: flex; gap: .9rem; flex-wrap: wrap; margin-bottom: .6rem; }
-.site-foot a { text-decoration: none; }
+.site-foot { font-size: .94rem; }
+.site-foot nav { display: flex; gap: .5rem 1rem; flex-wrap: wrap; margin-bottom: .6rem; }
+.site-foot a { text-decoration: none; display: inline-flex; align-items: center; min-height: 44px; }
 
 @media (max-width: 640px) {
   body { font-size: 16px; }
-  .site-nav { width: 100%; margin-inline-start: 0; overflow-x: auto; padding-bottom: .35rem; }
-  .site-head .wrap { padding-top: .5rem; }
   .qbtn { flex: 1 1 100%; }
 }
 
@@ -259,4 +278,114 @@ details p { margin: .6rem 0 0; color: var(--muted); }
 @media (max-width: 900px) {
   .vt-cols { grid-template-columns: 1fr; }
   .vt-out-card { position: static; }
+}
+
+/* ── sticky-header safety ──────────────────────────────────────────
+   The header overlaps in-page anchors unless targets reserve room for it. */
+:target, h2[id], h3[id], section[id] { scroll-margin-top: 5.5rem; }
+
+/* ── mobile menu ──────────────────────────────────────────────────
+   Progressive enhancement: the toggle only takes over once JS adds
+   .js-nav to <html>, so a no-JS visitor keeps a usable scrolling row. */
+.nav-toggle {
+  display: none; margin-inline-start: auto; flex: 0 0 auto;
+  align-items: center; gap: .45rem;
+  font: inherit; font-size: .95rem; font-weight: 700; cursor: pointer;
+  min-height: 44px; padding: .4rem .8rem;
+  background: #fff; color: var(--ink);
+  border: 1px solid var(--border); border-radius: 10px;
+}
+.nav-toggle:hover { border-color: var(--action); }
+.nav-toggle .bars { display: inline-flex; flex-direction: column; gap: 3px; }
+.nav-toggle .bars i { display: block; width: 17px; height: 2px; background: var(--ink); border-radius: 2px; }
+.nav-toggle[aria-expanded="true"] { background: var(--action); color: #fff; border-color: var(--action); }
+.nav-toggle[aria-expanded="true"] .bars i { background: #fff; }
+
+@media (max-width: 800px) {
+  .site-head .wrap { min-height: 56px; gap: .5rem; flex-wrap: wrap; }
+  .nav-toggle { display: inline-flex; }
+  html.js-nav .site-nav { display: none; }
+  html.js-nav .site-nav.is-open {
+    display: flex; flex-direction: column; align-items: stretch;
+    width: 100%; margin: 0 0 .55rem; gap: .2rem; overflow-x: hidden;
+    max-height: min(66vh, 23rem); overflow-y: auto;
+    border-top: 1px solid var(--border); padding-top: .5rem;
+  }
+  html.js-nav .site-nav.is-open a { border-radius: 10px; padding: .55rem .8rem; font-size: 1rem; }
+  html:not(.js-nav) .site-nav { width: 100%; margin-inline-start: 0; padding-bottom: .35rem; }
+}
+
+/* ── quiet conversion band (end of page, after the value) ─────────── */
+.help-band {
+  margin: 2.5rem 0 0; padding: 1.15rem 1.2rem;
+  background: linear-gradient(180deg, #fbfaf7, #fff);
+  border: 1px solid var(--border); border-radius: var(--radius);
+}
+.help-band h2 { font-size: 1.2rem; margin: 0 0 .35rem; }
+.help-band p { color: var(--muted); font-size: .97rem; margin: 0 0 .9rem; max-width: 42rem; }
+.help-actions { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; }
+.help-actions .btn { text-decoration: none; display: inline-flex; align-items: center; }
+.help-link {
+  font-size: .95rem; font-weight: 600; text-decoration: none;
+  display: inline-flex; align-items: center; min-height: 44px; padding: 0 .5rem;
+}
+.help-note { font-size: .9rem; color: var(--muted); margin: .7rem 0 0; }
+
+/* ── floating launcher: appears only after real engagement ────────── */
+.wa-dock { position: fixed; inset-inline-end: 1rem; bottom: 1rem; z-index: 40; display: none; }
+.wa-dock.is-ready { display: block; }
+.wa-fab {
+  display: inline-flex; align-items: center; gap: .5rem;
+  font: inherit; font-size: .95rem; font-weight: 700; cursor: pointer;
+  min-height: 48px; padding: .5rem 1rem .5rem .85rem;
+  background: var(--action); color: #fff; border: 0; border-radius: 999px;
+  box-shadow: 0 4px 14px -4px rgba(15, 92, 78, .5);
+  opacity: 0; transform: translateY(8px); transition: opacity .25s ease, transform .25s ease;
+}
+.wa-dock.is-ready .wa-fab { opacity: 1; transform: none; }
+.wa-fab:hover { background: var(--action-hover); }
+.wa-fab svg { width: 20px; height: 20px; fill: currentColor; flex: 0 0 auto; }
+.wa-sheet {
+  position: absolute; inset-inline-end: 0; bottom: calc(100% + .6rem);
+  width: min(19rem, calc(100vw - 2rem));
+  background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+  box-shadow: 0 10px 34px -14px rgba(26, 29, 26, .45); padding: .9rem;
+}
+.wa-sheet[hidden] { display: none; }
+.wa-sheet h3 { margin: 0 0 .15rem; font-size: 1.02rem; }
+.wa-sheet .wa-sub { margin: 0 0 .7rem; font-size: .9rem; color: var(--muted); }
+.wa-opts { display: grid; gap: .4rem; }
+.wa-opts a {
+  display: block; text-decoration: none; color: var(--ink);
+  border: 1px solid var(--border); border-radius: 10px; padding: .55rem .7rem;
+  font-size: .95rem; font-weight: 600;
+}
+.wa-opts a:hover { border-color: var(--action); background: #fbfaf7; }
+.wa-opts a small { display: block; font-weight: 500; font-size: .9rem; color: var(--muted); }
+.wa-close {
+  position: absolute; inset-inline-start: .4rem; top: .4rem;
+  width: 34px; height: 34px; border-radius: 999px; cursor: pointer;
+  background: transparent; border: 0; color: var(--muted); font-size: 1.15rem; line-height: 1;
+}
+.wa-close:hover { background: #f1ede6; color: var(--ink); }
+.wa-dismiss {
+  display: block; width: 100%; margin-top: .55rem; text-align: center;
+  font: inherit; font-size: .92rem; color: var(--muted);
+  background: transparent; border: 0; cursor: pointer; min-height: 40px;
+}
+.wa-dismiss:hover { color: var(--ink); text-decoration: underline; }
+
+/* contextual offer injected after a tool produces a result */
+.wa-inline {
+  margin: 1rem 0 0; padding: .9rem 1rem;
+  background: #f4faf7; border: 1px solid #cfe6da; border-radius: 12px;
+}
+.wa-inline p { margin: 0 0 .7rem; font-size: .97rem; }
+.wa-inline .btn { text-decoration: none; display: inline-flex; align-items: center; }
+
+@media (max-width: 480px) {
+  .wa-dock { inset-inline-end: .7rem; bottom: .7rem; }
+  .wa-fab span { display: none; }
+  .wa-fab { padding: .5rem; min-width: 52px; min-height: 52px; justify-content: center; border-radius: 999px; }
+  .wa-fab svg { width: 24px; height: 24px; }
 }
