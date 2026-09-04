@@ -50,7 +50,7 @@
             "name": "إيه الفرق بين Akkusativ و Dativ؟",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "الـAkkusativ للمفعول المباشر — الحاجة اللي الفعل واقع عليها. والـDativ للمفعول الغير مباشر — الشخص اللي بيستفيد أو بيستلم. وفيه أفعال بتاخد Dativ إجبارياً زي helfen و danken و gehören و gefallen، وأفعال بتاخد Akkusativ زي sehen و haben و kaufen."
+              "text": "الـAkkusativ للمفعول المباشر — الحاجة اللي الفعل واقع عليها. والـDativ للمفعول غير المباشر — الشخص اللي بيستفيد أو بيستلم. وفيه أفعال بتاخد Dativ إجبارياً زي helfen و danken و gehören و gefallen، وأفعال بتاخد Akkusativ زي sehen و haben و kaufen."
             }
           },
           {
@@ -58,15 +58,15 @@
             "name": "إزاي أعرف الحالة بعد حرف الجر؟",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "فيه حروف بتاخد Akkusativ دايماً (durch, für, gegen, ohne, um)، وحروف بتاخد Dativ دايماً (aus, bei, mit, nach, seit, von, zu)، وحروف متفيّرة (an, auf, in, über, unter, vor, neben, hinter, zwischen) بتاخد Akkusativ لو فيه حركة واتجاه، و Dativ لو المكان ثابت."
+              "text": "فيه حروف بتاخد Akkusativ دايماً (durch, für, gegen, ohne, um)، وحروف بتاخد Dativ دايماً (aus, bei, mit, nach, seit, von, zu)، وحروف متغيّرة (an, auf, in, über, unter, vor, neben, hinter, zwischen) بتاخد Akkusativ لو فيه حركة واتجاه، و Dativ لو المكان ثابت."
             }
           },
           {
             "@type": "Question",
-            "name": "أدوات التعريف بتتقيّر إزاي في الحالات الأربعة؟",
+            "name": "أدوات التعريف بتتغيّر إزاي في الحالات الأربعة؟",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "في الـNominativ: der / die / das / die. في الـAkkusativ المذكر بس بيتفيّر لـ den. في الـDativ: dem / der / dem / den مع إضافة -n لجمع الاسم. في الـGenitiv: des / der / des / der مع إضافة -s لأسماء المذكر والمحايد."
+              "text": "في الـNominativ: der / die / das / die. في الـAkkusativ المذكر بس بيتغيّر لـ den. في الـDativ: dem / der / dem / den مع إضافة -n لجمع الاسم. في الـGenitiv: des / der / des / der مع إضافة -s لأسماء المذكر والمحايد."
             }
           }
         ]
@@ -92,8 +92,304 @@
       <nav class="crumbs" aria-label="مسار التنقل"><a href="../">الرئيسية</a> ← الحالات الأربعة</nav>
       <h1>الحالات الأربعة في الألماني</h1>
       <p class="lede">
-        الحالة (<span class="de">Kasus</span>) هي أهم حاجة بتخلي الجملة الألمانية صح أو في فيها مش إلاّ إنها. مش موجودة.
+        الحالة (<span class="de">Kasus</span>) هي أهم حاجة بتخلي الجملة الألمانية صح أو غلط، وهي كمان أصعب حاجة على
+        العربي لأن العربي مافيهاش أدوات تعريف بتتغيّر. الصفحة دي بتشرح الأربعة بالعربي، بجداول كاملة
+        ومدرّب تفاعلي بيقولك <b>ليه</b> الإجابة صح مش بس صح ولا غلط.
       </p>
+
+      <div class="chips">
+        <a class="chip" href="#kasus-shar7">الأربعة بسرعة</a>
+        <a class="chip" href="#jadwal">جداول الأدوات</a>
+        <a class="chip" href="#damayer">الضمائر</a>
+        <a class="chip" href="#huruf">حروف الجر</a>
+        <a class="chip" href="#af3al">أفعال الـDativ</a>
+        <a class="chip go" href="#kasus-quiz">المدرّب التفاعلي</a>
+      </div>
+
+      <section id="kasus-shar7">
+        <h2>الأربعة في سطر واحد لكل واحدة</h2>
+        <div class="grid-2">
+          <div class="tool-card">
+            <h3><span class="badge g-der">Nominativ</span> الفاعل</h3>
+            <p>مين اللي بيعمل الفعل. اسأل <span class="de">wer?</span> (مين).</p>
+            <p class="de"><b>Der Mann</b> liest ein Buch.</p>
+            <p class="hint">الراجل بيقرا كتاب — «الراجل» هو الفاعل.</p>
+          </div>
+          <div class="tool-card">
+            <h3><span class="badge g-die">Akkusativ</span> المفعول المباشر</h3>
+            <p>الحاجة اللي الفعل واقع عليها. اسأل <span class="de">wen?</span> / <span class="de">was?</span></p>
+            <p class="de">Ich sehe <b>den Mann</b>.</p>
+            <p class="hint">أنا بشوف الراجل — «الراجل» هنا مفعول.</p>
+          </div>
+          <div class="tool-card">
+            <h3><span class="badge g-das">Dativ</span> المفعول غير المباشر</h3>
+            <p>الشخص اللي بيستلم أو بيستفيد. اسأل <span class="de">wem?</span></p>
+            <p class="de">Ich helfe <b>dem Mann</b>.</p>
+            <p class="hint">أنا بساعد الراجل — الفعل <span class="de">helfen</span> بياخد Dativ إجبارياً.</p>
+          </div>
+          <div class="tool-card">
+            <h3><span class="badge gender">Genitiv</span> الملكية</h3>
+            <p>بتاع مين. اسأل <span class="de">wessen?</span></p>
+            <p class="de">Das ist das Auto <b>des Mannes</b>.</p>
+            <p class="hint">ده عربية الراجل — ملكية.</p>
+          </div>
+        </div>
+        <div class="note">
+          <b>أهم ملاحظة عملية:</b> لو بصّيت على الجداول تحت هتلاحظ إن <b>المذكر</b> هو اللي بيتغيّر في كل حالة،
+          والمؤنث والمحايد بيتغيّروا أقل بكتير. فلو وقتك ضيّق، اظبط المذكر الأول — هو اللي بيكشف الغلط.
+        </div>
+      </section>
+
+      <section id="jadwal">
+        <h2>جدول أدوات التعريف (der / die / das)</h2>
+        <div class="tbl-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>الحالة</th>
+                <th>مذكر</th>
+                <th>مؤنث</th>
+                <th>محايد</th>
+                <th>جمع</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="badge g-der">Nominativ</span></td>
+                <td class="de"><b>der</b></td>
+                <td class="de">die</td>
+                <td class="de">das</td>
+                <td class="de">die</td>
+              </tr>
+              <tr>
+                <td><span class="badge g-die">Akkusativ</span></td>
+                <td class="de"><b>den</b></td>
+                <td class="de">die</td>
+                <td class="de">das</td>
+                <td class="de">die</td>
+              </tr>
+              <tr>
+                <td><span class="badge g-das">Dativ</span></td>
+                <td class="de"><b>dem</b></td>
+                <td class="de">der</td>
+                <td class="de">dem</td>
+                <td class="de">den + <b>-n</b></td>
+              </tr>
+              <tr>
+                <td><span class="badge gender">Genitiv</span></td>
+                <td class="de"><b>des</b> + <b>-s</b></td>
+                <td class="de">der</td>
+                <td class="de">des + <b>-s</b></td>
+                <td class="de">der</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="hint">
+          الـ<b>-n</b> في جمع الـDativ بتتحط على الاسم نفسه: <span class="de">die Kinder → mit den Kinder<b>n</b></span>.
+          والـ<b>-s</b> في الـGenitiv بتتحط على المذكر والمحايد: <span class="de">der Vater → des Vater<b>s</b></span>.
+        </p>
+
+        <h2>جدول أدوات النكرة (ein / eine) و kein و الملكية</h2>
+        <div class="tbl-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>الحالة</th>
+                <th>مذكر</th>
+                <th>مؤنث</th>
+                <th>محايد</th>
+                <th>جمع</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="badge g-der">Nominativ</span></td>
+                <td class="de">ein</td>
+                <td class="de">eine</td>
+                <td class="de">ein</td>
+                <td class="de">— / keine</td>
+              </tr>
+              <tr>
+                <td><span class="badge g-die">Akkusativ</span></td>
+                <td class="de"><b>einen</b></td>
+                <td class="de">eine</td>
+                <td class="de">ein</td>
+                <td class="de">— / keine</td>
+              </tr>
+              <tr>
+                <td><span class="badge g-das">Dativ</span></td>
+                <td class="de">einem</td>
+                <td class="de">einer</td>
+                <td class="de">einem</td>
+                <td class="de">— / keinen</td>
+              </tr>
+              <tr>
+                <td><span class="badge gender">Genitiv</span></td>
+                <td class="de">eines</td>
+                <td class="de">einer</td>
+                <td class="de">eines</td>
+                <td class="de">— / keiner</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="hint">
+          نفس النهايات دي بالحرف تنطبق على <span class="de">kein</span> وعلى أدوات الملكية
+          (<span class="de">mein, dein, sein, ihr, unser, euer</span>). يعني لو حفظت الجدول ده مرة واحدة،
+          تبقى حفظت <span class="de">meinen Bruder</span> و <span class="de">keinen Hund</span> و
+          <span class="de">seinem Freund</span> كلها مع بعض.
+        </p>
+      </section>
+
+      <section id="damayer">
+        <h2>الضمائر في الحالات الثلاثة</h2>
+        <div class="tbl-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th><span class="badge g-der">Nominativ</span></th>
+                <th><span class="badge g-die">Akkusativ</span></th>
+                <th><span class="badge g-das">Dativ</span></th>
+                <th>المعنى</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td class="de">ich</td><td class="de">mich</td><td class="de">mir</td><td>أنا</td></tr>
+              <tr><td class="de">du</td><td class="de">dich</td><td class="de">dir</td><td>انت</td></tr>
+              <tr><td class="de">er</td><td class="de">ihn</td><td class="de">ihm</td><td>هو</td></tr>
+              <tr><td class="de">sie</td><td class="de">sie</td><td class="de">ihr</td><td>هي</td></tr>
+              <tr><td class="de">es</td><td class="de">es</td><td class="de">ihm</td><td>هو/هي (محايد)</td></tr>
+              <tr><td class="de">wir</td><td class="de">uns</td><td class="de">uns</td><td>احنا</td></tr>
+              <tr><td class="de">ihr</td><td class="de">euch</td><td class="de">euch</td><td>انتم</td></tr>
+              <tr><td class="de">sie / Sie</td><td class="de">sie / Sie</td><td class="de">ihnen / Ihnen</td><td>هم / حضرتك</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="note">
+          <b>أشهر غلط:</b> <span class="de">Kannst du mich helfen?</span> ❌ — الصح
+          <span class="de">Kannst du <b>mir</b> helfen?</span> ✅ لأن <span class="de">helfen</span> بياخد Dativ.
+          الترجمة العربية «تساعدني» بتوحي بمفعول مباشر، وده اللي بيوقّع الناس.
+        </div>
+      </section>
+
+      <section id="huruf">
+        <h2>حروف الجر — كل مجموعة وحالتها</h2>
+
+        <h3>بتاخد <span class="badge g-die">Akkusativ</span> دايماً</h3>
+        <div class="chips">
+          <span class="chip de">durch</span><span class="chip de">für</span><span class="chip de">gegen</span>
+          <span class="chip de">ohne</span><span class="chip de">um</span><span class="chip de">bis</span>
+          <span class="chip de">entlang</span>
+        </div>
+        <p class="de">Ich kaufe ein Geschenk <b>für meinen</b> Bruder.</p>
+
+        <h3>بتاخد <span class="badge g-das">Dativ</span> دايماً</h3>
+        <div class="chips">
+          <span class="chip de">aus</span><span class="chip de">bei</span><span class="chip de">mit</span>
+          <span class="chip de">nach</span><span class="chip de">seit</span><span class="chip de">von</span>
+          <span class="chip de">zu</span><span class="chip de">gegenüber</span>
+        </div>
+        <p class="de">Ich fahre <b>mit dem</b> Bus <b>zur</b> Arbeit.</p>
+
+        <h3>حروف متغيّرة (<span class="de">Wechselpräpositionen</span>) — دي اللي محتاجة تفكير</h3>
+        <div class="chips">
+          <span class="chip de">an</span><span class="chip de">auf</span><span class="chip de">hinter</span>
+          <span class="chip de">in</span><span class="chip de">neben</span><span class="chip de">über</span>
+          <span class="chip de">unter</span><span class="chip de">vor</span><span class="chip de">zwischen</span>
+        </div>
+        <div class="grid-2">
+          <div class="tool-card">
+            <h3>فيه حركة؟ → <span class="badge g-die">Akkusativ</span></h3>
+            <p>اسأل <span class="de">wohin?</span> (لفين). الحاجة بتتنقل لمكان جديد.</p>
+            <p class="de">Ich gehe <b>in die</b> Schule.</p>
+            <p class="de">Ich lege das Buch <b>auf den</b> Tisch.</p>
+          </div>
+          <div class="tool-card">
+            <h3>مكان ثابت؟ → <span class="badge g-das">Dativ</span></h3>
+            <p>اسأل <span class="de">wo?</span> (فين). مافيش انتقال.</p>
+            <p class="de">Ich bin <b>in der</b> Schule.</p>
+            <p class="de">Das Buch liegt <b>auf dem</b> Tisch.</p>
+          </div>
+        </div>
+        <p class="hint">
+          أسرع طريقة: بُصّ على الفعل. <span class="de">legen / stellen / setzen / hängen (حركة) → Akkusativ</span>،
+          و <span class="de">liegen / stehen / sitzen / hängen (ثبات) → Dativ</span>.
+        </p>
+
+        <h3>بتاخد <span class="badge gender">Genitiv</span></h3>
+        <div class="chips">
+          <span class="chip de">wegen</span><span class="chip de">während</span><span class="chip de">trotz</span>
+          <span class="chip de">statt</span><span class="chip de">außerhalb</span><span class="chip de">innerhalb</span>
+        </div>
+        <p class="de"><b>Wegen des</b> Wetters bleiben wir zu Hause.</p>
+      </section>
+
+      <section id="af3al">
+        <h2>أفعال بتاخد <span class="badge g-das">Dativ</span> — احفظها كقائمة</h2>
+        <p>
+          دي أهم مجموعة تحفظها غيابياً، لأن معناها في العربي بيوحي بمفعول مباشر فبتغلط فيها تلقائياً:
+        </p>
+        <div class="chips">
+          <span class="chip de">helfen</span><span class="chip de">danken</span><span class="chip de">gratulieren</span>
+          <span class="chip de">gehören</span><span class="chip de">gefallen</span><span class="chip de">passen</span>
+          <span class="chip de">schmecken</span><span class="chip de">antworten</span><span class="chip de">folgen</span>
+          <span class="chip de">glauben</span><span class="chip de">zuhören</span><span class="chip de">vertrauen</span>
+        </div>
+        <div class="tbl-scroll">
+          <table>
+            <thead>
+              <tr><th>الفعل</th><th>مثال</th><th>المعنى</th></tr>
+            </thead>
+            <tbody>
+              <tr><td class="de">helfen</td><td class="de">Ich helfe <b>dir</b>.</td><td>بساعدك</td></tr>
+              <tr><td class="de">danken</td><td class="de">Ich danke <b>Ihnen</b>.</td><td>بشكر حضرتك</td></tr>
+              <tr><td class="de">gehören</td><td class="de">Das Buch gehört <b>mir</b>.</td><td>الكتاب بتاعي</td></tr>
+              <tr><td class="de">gefallen</td><td class="de">Der Film gefällt <b>mir</b>.</td><td>الفيلم عاجبني</td></tr>
+              <tr><td class="de">schmecken</td><td class="de">Das Essen schmeckt <b>mir</b>.</td><td>الأكل حلو عندي</td></tr>
+              <tr><td class="de">antworten</td><td class="de">Er antwortet <b>dem</b> Lehrer.</td><td>بيرد على المدرّس</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="note">
+          <b>أفعال بمفعولين:</b> أفعال زي <span class="de">geben, schicken, zeigen, erklären, kaufen</span> بتاخد
+          الاتنين مع بعض — الشخص Dativ والحاجة Akkusativ:
+          <span class="de">Ich gebe <b>dem Freund</b> (Dativ) <b>ein Geschenk</b> (Akkusativ).</span>
+        </div>
+      </section>
+
+      <section id="kasus-quiz">
+        <h2>المدرّب التفاعلي</h2>
+        <p>
+          ١٠ أسئلة عشوائية من بنك أسئلة بيغطي الحالات الأربعة وحروف الجر وأفعال الـDativ.
+          كل إجابة بيطلع معاها <b>الحالة</b> و<b>سبب</b> إن ده الصح.
+        </p>
+        <div class="quiz-word" id="kq-word"></div>
+        <div class="quiz-opts" id="kq-opts"></div>
+        <div class="quiz-fb" id="kq-fb" hidden></div>
+        <div class="quiz-meta">
+          <span id="kq-progress"></span>
+          <span id="kq-score"></span>
+        </div>
+        <p>
+          <button type="button" class="btn" id="kq-next" hidden>السؤال اللي بعده</button>
+          <button type="button" class="btn ghost" id="kq-restart" hidden>ابدأ من الأول</button>
+        </p>
+        <noscript>
+          <p class="note">المدرّب التفاعلي محتاج JavaScript. الجداول والشرح فوق كاملين وبيشتغلوا بدونه.</p>
+        </noscript>
+      </section>
+
+      <section class="related">
+        <h2>أدوات مرتبطة</h2>
+        <p>
+          الحالات مبنية على أداة التعريف، فلو لسه بتغلط في <span class="de">der/die/das</span> ابدأ من هناك:
+        </p>
+        <div class="chips">
+          <a class="chip go" href="../der-die-das/">أداة التعريف والجمع + كويز</a>
+          <a class="chip go" href="../verben/">تصريف الأفعال الشاذة</a>
+        </div>
+      </section>
     </main>
     <footer class="site-foot">
       <div class="wrap">
