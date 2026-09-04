@@ -34,3 +34,14 @@ bun run build
 
 - لا يُنشر شكل لغوي غير مؤكَّد؛ الجمع مكتوب صريحاً لكل اسم ولا يُتنبّأ به.
 - كل صفحة تحمل canonical و hreflang عربي وبيانات schema منظّمة.
+
+## Deployment
+
+This site is built with Vite and deployed via Cloudflare Pages from the `main` branch.
+
+- Build command: `bun run build`
+- Build output directory: `dist`
+
+The build output directory is also declared in `wrangler.toml`
+(`pages_build_output_dir = "dist"`), so Cloudflare Pages reads it from the
+repository rather than relying only on dashboard settings.
