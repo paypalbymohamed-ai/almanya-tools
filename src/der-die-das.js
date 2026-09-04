@@ -1,5 +1,6 @@
 import "./styles.css";
 import { NOUNS, GENDER_RULES, PLURAL_RULES } from "./data/nouns.js";
+import { recordAttempt, getMistakes, recordLookup, recordActivity, clearAllMistakes } from "./progress.js";
 
 const $ = (s) => document.querySelector(s);
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
@@ -66,6 +67,13 @@ function search(q, push = true) {
     const url = new URL(location.href);
     url.searchParams.set("w", q);
     history.replaceState(null, "", url);
+    // A lookup is real intent — remember it so the homepage can offer a way back.
+    const top = hits[0];
+    if (top) {
+      try {
+        recordLookup({ tool: "derdiedas", label: top.w, href: `/der-die-das/?w=${encodeURIComponent(top.w)}`, detail: `${top.g} ${top.w}` });
+      } catch { /* ignore */ }
+    }
   }
 }
 
@@ -82,11 +90,13 @@ document.addEventListener("click", (e) => {
   out.scrollIntoView({ block: "nearest" });
 });
 
-/* ---------------- quiz: 10 words ---------------- */
+/* ---------------- quiz: 10 words, or a targeted review round ---------------- */
 const QUIZ_LEN = 10;
 let quiz = [];
 let idx = 0;
 let score = 0;
+let reviewMode = false;
+let LEN = QUIZ_LEN;
 
 const qWord = $("#quiz-word");
 const qTopic = $("#quiz-topic");
@@ -95,6 +105,13 @@ const qBar = $("#quiz-bar");
 const qCount = $("#quiz-count");
 const qBtns = [...document.querySelectorAll(".qbtn")];
 const qAgain = $("#quiz-again");
+
+const BY_WORD = new Map(WORDS.map((n) => [n.w, n]));
+
+/** Only the nouns this learner actually got wrong, hardest-missed first. */
+function reviewPool() {
+  return getMistakes("derdiedas").map((m) => BY_WORD.get(m.id)).filter(Boolean);
+}
 
 function pick() {
   const pool = WORDS.slice();
@@ -109,8 +126,8 @@ function paint() {
   const n = quiz[idx];
   qWord.textContent = n.w;
   qTopic.textContent = `${n.ar} · ${n.topic}`;
-  qCount.textContent = `سؤال ${idx + 1} من ${QUIZ_LEN} · صح: ${score}`;
-  qBar.style.width = `${(idx / QUIZ_LEN) * 100}%`;
+  qCount.textContent = `${reviewMode ? "مراجعة" : "سؤال"} ${idx + 1} من ${LEN} · صح: ${score}`;
+  qBar.style.width = `${(idx / LEN) * 100}%`;
   qFb.innerHTML = "";
   qBtns.forEach((b) => {
     b.disabled = false;
@@ -123,6 +140,11 @@ function answer(g, btn) {
   const n = quiz[idx];
   const right = g === n.g;
   if (right) score++;
+  // Feed the shared mistake bank: a miss enters the review queue, and getting
+  // the same noun right later is what removes it again.
+  try {
+    recordAttempt({ tool: "derdiedas", id: n.w, label: `${n.g} ${n.w}`, correct: right, meta: { ar: n.ar } });
+  } catch { /* progress is a bonus, never a blocker */ }
   qBtns.forEach((b) => {
     b.disabled = true;
     if (b.dataset.g === n.g) b.classList.add("right");
@@ -135,31 +157,89 @@ function answer(g, btn) {
     ${rule ? `<br><span style="font-weight:400;color:var(--muted)">${esc(rule.note)}</span>` : ""}`;
   setTimeout(() => {
     idx++;
-    if (idx < QUIZ_LEN) paint();
+    if (idx < LEN) paint();
     else finish();
   }, right ? 900 : 2600);
 }
 
 function finish() {
   qBar.style.width = "100%";
-  qWord.textContent = `${score} / ${QUIZ_LEN}`;
-  qTopic.textContent = score >= 8 ? "مستوى ممتاز في الـArtikel" : score >= 5 ? "لسه محتاج مراجعة القواعد اللي تحت" : "ابدأ بقواعد ‎-ung و ‎-chen و ‎-um، دي أسرع مكسب";
+  qWord.textContent = `${score} / ${LEN}`;
+  if (reviewMode) {
+    const left = reviewPool().length;
+    qTopic.textContent = left === 0
+      ? "نظّفت قائمة أخطاءك بالكامل — تمام"
+      : `فاضل ${left} كلمة في قائمة المراجعة`;
+  } else {
+    qTopic.textContent = score >= 8 ? "مستوى ممتاز في الـArtikel" : score >= 5 ? "لسه محتاج مراجعة القواعد اللي تحت" : "ابدأ بقواعد ‎-ung و ‎-chen و ‎-um، دي أسرع مكسب";
+  }
   qCount.textContent = "خلصت الجولة";
   qFb.innerHTML = "";
   qBtns.forEach((b) => (b.disabled = true));
   qAgain.hidden = false;
+  renderReviewBar();
 }
 
-qBtns.forEach((b) => b.addEventListener("click", () => answer(b.dataset.g, b)));
-qAgain.addEventListener("click", () => {
-  quiz = pick();
+/**
+ * A quiet, honest entry point to the review queue: it only exists when the
+ * learner has misses, it says how many, and it never nags.
+ */
+function renderReviewBar() {
+  const host = $("#quiz-review");
+  if (!host) return;
+  const n = reviewPool().length;
+  if (!n) {
+    host.innerHTML = reviewMode
+      ? `<p class="rv-done">قائمة أخطاءك فاضية. الكلمات اللي تغلط فيها هتتجمع هنا تلقائياً عشان تراجعها بعدين.</p>`
+      : "";
+    host.hidden = !reviewMode;
+    return;
+  }
+  host.hidden = false;
+  host.innerHTML = `
+    <div class="rv-bar">
+      <span class="rv-txt"><b>${n}</b> كلمة غلطت فيها قبل كده</span>
+      <button class="rv-go" type="button">${reviewMode ? "جولة مراجعة تانية" : "راجعها الآن"}</button>
+      <button class="rv-clear" type="button">امسح القائمة</button>
+    </div>`;
+  host.querySelector(".rv-go").addEventListener("click", startReview);
+  host.querySelector(".rv-clear").addEventListener("click", () => {
+    clearAllMistakes("derdiedas");
+    reviewMode = false;
+    startFresh();
+  });
+}
+
+function startReview() {
+  const pool = reviewPool();
+  if (!pool.length) { startFresh(); return; }
+  reviewMode = true;
+  quiz = pool.slice(0, 12);
+  LEN = quiz.length;
   idx = 0;
   score = 0;
   paint();
-});
+  renderReviewBar();
+  try { recordActivity({ tool: "derdiedas", label: "der / die / das", href: "/der-die-das/?review=1", detail: "مراجعة أخطاءك" }); } catch { /* ignore */ }
+  $("#quiz-word")?.closest("section, .card")?.scrollIntoView({ block: "nearest", behavior: "smooth" });
+}
 
-quiz = pick();
-paint();
+function startFresh() {
+  reviewMode = false;
+  quiz = pick();
+  LEN = QUIZ_LEN;
+  idx = 0;
+  score = 0;
+  paint();
+  renderReviewBar();
+}
+
+qBtns.forEach((b) => b.addEventListener("click", () => answer(b.dataset.g, b)));
+qAgain.addEventListener("click", () => (reviewMode ? startReview() : startFresh()));
+
+startFresh();
+// Arriving from the homepage review card drops the learner straight in.
+if (new URLSearchParams(location.search).get("review") === "1") startReview();
 
 /* ---------------- browsable table + rules ---------------- */
 const tbody = $("#noun-list");

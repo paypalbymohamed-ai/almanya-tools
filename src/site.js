@@ -10,6 +10,8 @@
  *            exists to sell them a course.
  */
 
+import { recordVisit, recordActivity, summary, DAILY_GOAL } from './progress.js';
+
 const WA_NUMBER = '201055205228';
 const DISMISS_KEY = 'at_wa_dismissed_at';
 const DISMISS_DAYS = 14;
@@ -234,11 +236,99 @@ function initContextualOffers(dock) {
   }
 }
 
+/* ─────────────────────── progress / retention ─────────────────────── */
+
+/** Path -> tool identity, so resume works without wiring every tool script. */
+const TOOLS = [
+  ['/verben/', 'verben', 'الأفعال الشاذة'],
+  ['/der-die-das/', 'derdiedas', 'der / die / das'],
+  ['/faelle/', 'faelle', 'الحالات الأربعة'],
+  ['/einstufungstest/', 'einstufungstest', 'تحديد المستوى'],
+  ['/lernplan/', 'lernplan', 'خطة ١٢ أسبوع'],
+  ['/vorlagen/', 'vorlagen', 'المراسلات الرسمية'],
+];
+
+function currentTool() {
+  for (const [frag, tool, label] of TOOLS) {
+    if (location.pathname.includes(frag)) return { tool, label, href: frag };
+  }
+  return null;
+}
+
+const NUM = (n) => String(n).replace(/\d/g, (d) => '٠١٢٣٤٥٦٧٨٩'[d]);
+
+/**
+ * The homepage progress panel: the learner's own state, shown only once they
+ * have any. A first-time visitor sees nothing here — no empty shell, no
+ * "0 / 10 start now!" pressure. It renders three honest things: a review queue
+ * (the real reason to return), today's practice, and a way back to where they
+ * stopped. Deliberately no leaderboard and no loss-warning.
+ */
+function renderHomePanel() {
+  const mount = document.querySelector('#progress-mount');
+  if (!mount) return;
+  const s = summary();
+  if (s.isNew) return; // nothing earned yet — stay quiet
+
+  const bits = [];
+
+  if (s.streak >= 2) {
+    bits.push(`<span class="pg-stat"><b>${NUM(s.streak)}</b> يوم متتالي</span>`);
+  }
+  if (s.attempts > 0) {
+    const pct = Math.round((s.correct / s.attempts) * 100);
+    bits.push(`<span class="pg-stat"><b>${NUM(s.attempts)}</b> سؤال · ${NUM(pct)}% صح</span>`);
+  }
+
+  const ring = Math.min(100, Math.round((s.todayCount / s.goal) * 100));
+  const goalLine = s.goalMet
+    ? `خلّصت هدف النهاردة (${NUM(s.goal)} أسئلة) — أي حاجة زيادة مكسب.`
+    : `النهاردة: ${NUM(s.todayCount)} من ${NUM(s.goal)}`;
+
+  const review = s.mistakeCount > 0
+    ? `<a class="pg-review" href="/der-die-das/?review=1">
+         <span class="pg-review-n">${NUM(s.mistakeCount)}</span>
+         <span>كلمة غلطت فيها — راجعها<small>المراجعة المستهدفة أسرع طريقة تثبّت اللي ناقصك</small></span>
+       </a>`
+    : '';
+
+  const resume = s.resume
+    ? `<a class="pg-resume" href="${s.resume.href}">كمّل من حيث وقفت: <b>${s.resume.detail || s.resume.label}</b></a>`
+    : '';
+
+  mount.innerHTML = `
+    <section class="pg-panel" aria-label="تقدّمك">
+      <div class="pg-head">
+        <h2>تقدّمك</h2>
+        <p class="pg-note">محفوظ على جهازك بس — بدون تسجيل ولا حساب.</p>
+      </div>
+      ${bits.length ? `<div class="pg-stats">${bits.join('')}</div>` : ''}
+      <div class="pg-goal" role="img" aria-label="${goalLine}">
+        <div class="pg-bar"><i style="width:${ring}%"></i></div>
+        <span>${goalLine}</span>
+      </div>
+      ${review}
+      ${resume}
+    </section>`;
+  mount.hidden = false;
+}
+
+function initProgress() {
+  recordVisit();
+  const t = currentTool();
+  if (t) {
+    // Tool scripts may refine this with a specific detail (word, week, level).
+    recordActivity({ tool: t.tool, label: t.label, href: t.href });
+  }
+  renderHomePanel();
+}
+
 function init() {
   initNav();
   enrichStaticLinks();
   const dock = initDock();
   initContextualOffers(dock);
+  try { initProgress(); } catch { /* progress must never break a tool */ }
 }
 
 if (document.readyState === 'loading') {

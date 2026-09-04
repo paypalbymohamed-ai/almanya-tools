@@ -1,5 +1,6 @@
 import "./styles.css";
 import { ALL_VERBS, TENSES, PRONOUNS, searchVerbs } from "./conjugate.js";
+import { recordLookup } from "./progress.js";
 
 const $ = (s) => document.querySelector(s);
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
@@ -65,6 +66,12 @@ function go(q, push = true) {
     // Only follow the result on a real search — never on first paint, or the
     // visitor lands below the headline and the search field.
     out.scrollIntoView({ block: "nearest" });
+    const top = list[0];
+    if (top) {
+      try {
+        recordLookup({ tool: "verben", label: top.inf, href: `/verben/?v=${encodeURIComponent(top.inf)}`, detail: `${top.inf} — ${top.ar}` });
+      } catch { /* ignore */ }
+    }
   }
 }
 

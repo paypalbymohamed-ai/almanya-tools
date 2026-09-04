@@ -389,3 +389,69 @@ details p { margin: .6rem 0 0; color: var(--muted); }
   .wa-fab { padding: .5rem; min-width: 52px; min-height: 52px; justify-content: center; border-radius: 999px; }
   .wa-fab svg { width: 24px; height: 24px; }
 }
+
+/* ─────────────────────── progress panel (homepage) ───────────────────────
+   The learner's own state, rendered only when they have some. Deliberately
+   calm: no leaderboard, no red warnings, no "don't lose your streak". The
+   review queue is the one thing with visual weight, because it is the only
+   element here that is genuinely useful rather than decorative. */
+.pg-panel {
+  margin: 1.2rem 0 1.6rem; padding: 1rem 1.1rem;
+  background: #f4faf7; border: 1px solid #cfe6da; border-radius: var(--radius);
+}
+.pg-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: .5rem; }
+.pg-head h2 { margin: 0; font-size: 1.12rem; }
+.pg-note { margin: 0; font-size: .85rem; color: var(--muted); }
+.pg-stats { display: flex; flex-wrap: wrap; gap: .5rem; margin: .7rem 0 0; }
+.pg-stat {
+  font-size: .9rem; color: var(--muted); background: #fff;
+  border: 1px solid #dce8e1; border-radius: 999px; padding: .3rem .7rem;
+}
+.pg-stat b { color: var(--action); font-size: 1rem; }
+.pg-goal { margin-top: .8rem; font-size: .9rem; color: var(--muted); }
+.pg-bar {
+  height: 8px; background: #e3ece7; border-radius: 999px;
+  overflow: hidden; margin-bottom: .35rem;
+}
+.pg-bar i { display: block; height: 100%; background: var(--action); border-radius: 999px; transition: width .4s ease; }
+.pg-review {
+  display: flex; align-items: center; gap: .7rem; margin-top: .9rem;
+  padding: .7rem .8rem; background: #fff; border: 1px solid #cfe6da;
+  border-radius: 10px; text-decoration: none; color: var(--ink);
+  min-height: 44px; font-weight: 600;
+}
+.pg-review:hover { border-color: var(--action); color: var(--ink); }
+.pg-review small { display: block; font-weight: 400; font-size: .85rem; color: var(--muted); margin-top: .12rem; }
+.pg-review-n {
+  flex: 0 0 auto; min-width: 2.2rem; height: 2.2rem;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--action); color: #fff; border-radius: 999px; font-weight: 700;
+}
+.pg-resume {
+  display: block; margin-top: .6rem; font-size: .95rem;
+  min-height: 44px; display: flex; align-items: center;
+}
+
+/* ─────────────────────── mistake review bar (quiz) ─────────────────────── */
+.rv-bar {
+  display: flex; flex-wrap: wrap; align-items: center; gap: .6rem;
+  margin-top: .8rem; padding: .7rem .85rem;
+  background: #fff8ec; border: 1px solid #e8d9bd; border-radius: 10px;
+}
+.rv-txt { font-size: .95rem; color: var(--ink); }
+.rv-txt b { color: #8a5a12; }
+.rv-go {
+  font: inherit; font-size: .92rem; font-weight: 700; cursor: pointer;
+  background: var(--action); color: #fff; border: 0; border-radius: 10px;
+  padding: .55rem 1rem; min-height: 44px;
+}
+.rv-go:hover { background: var(--action-hover); }
+.rv-clear {
+  font: inherit; font-size: .9rem; cursor: pointer; color: var(--muted);
+  background: transparent; border: 0; min-height: 44px; padding: 0 .4rem;
+}
+.rv-clear:hover { color: var(--ink); text-decoration: underline; }
+.rv-done {
+  margin: .8rem 0 0; padding: .7rem .85rem; font-size: .93rem; color: var(--muted);
+  background: #f4faf7; border: 1px solid #cfe6da; border-radius: 10px;
+}
