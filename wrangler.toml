@@ -1,0 +1,7 @@
+# Cloudflare Pages build configuration (declarative).
+# With this file present, Cloudflare reads the build output directory from here
+# instead of the dashboard field, so a reconnected Git integration deploys the
+# built site (dist/) rather than the raw source files.
+name = "almanya-tools"
+compatibility_date = "2026-09-04"
+pages_build_output_dir = "dist"
