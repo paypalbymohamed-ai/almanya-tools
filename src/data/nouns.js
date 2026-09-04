@@ -184,7 +184,7 @@ export const GENDER_RULES = [
   { g: "die", label: "‎-in (مؤنث المهن)", test: (w) => w.endsWith("in") && w.length > 4, note: "die Lehrerin, die Ärztin." },
   { g: "das", label: "‎-chen / -lein", test: (w) => /(chen|lein)$/.test(w), note: "التصغير دايماً محايد، حتى das Mädchen." },
   { g: "das", label: "‎-um", test: (w) => w.endsWith("um"), note: "das Praktikum, das Museum, das Zentrum." },
-  { g: "das", label: "‎-ment", test: (w) => w.endsWith("ment"), note: "das Dokument, das Instrument." },
+  { g: "das", label: "‎-ment", test: (w) => w.endsWith("ment"), note: "das Dokument, das Instrument — بس احفظ الاستثناءين المهمين: der Moment و der Zement." },
   { g: "der", label: "‎-er (فاعل)", test: (w) => w.endsWith("er"), note: "غالباً مذكّر: der Lehrer, der Computer — بس في استثناءات مهمة: die Mutter, die Butter, die Nummer, das Fenster." },
   { g: "der", label: "‎-ling / -ismus", test: (w) => /(ling|ismus)$/.test(w), note: "der Lehrling, der Tourismus." }
 ];
