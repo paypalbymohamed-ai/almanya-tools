@@ -374,3 +374,11 @@ html.has-progress #progress-mount { min-height: 168px; }
   .wa-fab { padding: .5rem; min-width: 52px; min-height: 52px; justify-content: center; border-radius: 999px; }
   .wa-fab svg { width: 24px; height: 24px; }
 }
+
+
+/* The opened menu is a single scrolling column: .site-nav's desktop
+   flex-wrap:wrap would otherwise break it into a second column once the
+   items pass the max-height. */
+@media (max-width: 800px) {
+  html.js-nav .site-nav.is-open { flex-wrap: nowrap; }
+}
