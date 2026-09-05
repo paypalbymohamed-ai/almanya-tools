@@ -252,3 +252,45 @@ details p { margin: .6rem 0 0; color: var(--muted); }
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; animation: none !important; }
 }
+
+
+/* ── learner progress panel (homepage) ──────────────────────────────
+   Rendered by JS only for a visitor who already has progress. Space is
+   reserved ahead of paint via html.has-progress so restoring it cannot
+   push the tool list down. A first-time visitor gets neither. */
+html.has-progress #progress-mount { min-height: 168px; }
+@media (min-width: 801px) { html.has-progress #progress-mount { min-height: 140px; } }
+
+.pg-panel {
+  border: 1px solid var(--border); border-radius: 14px; background: #fff;
+  padding: 1rem 1.1rem; margin: 0 0 1.4rem;
+}
+.pg-head { display: flex; align-items: baseline; gap: .6rem; flex-wrap: wrap; }
+.pg-head h2 { margin: 0; font-size: 1.15rem; }
+.pg-note { margin: 0; font-size: .85rem; color: var(--muted); }
+.pg-stats { display: flex; gap: .5rem; flex-wrap: wrap; margin: .7rem 0 0; }
+.pg-stat {
+  background: #f4f1ea; border-radius: 999px; padding: .3rem .8rem;
+  font-size: .9rem; min-height: 34px; display: inline-flex; align-items: center;
+}
+.pg-stat b { color: var(--action); }
+.pg-goal { margin: .8rem 0 0; font-size: .9rem; color: var(--muted); }
+.pg-bar {
+  height: 8px; border-radius: 999px; background: #ece7de;
+  overflow: hidden; margin: 0 0 .35rem;
+}
+.pg-bar i { display: block; height: 100%; background: var(--action); border-radius: 999px; }
+.pg-review, .pg-resume {
+  display: flex; align-items: center; gap: .6rem; margin: .8rem 0 0;
+  padding: .7rem .9rem; border-radius: 12px; text-decoration: none;
+  min-height: 46px; border: 1px solid var(--border); color: var(--ink);
+}
+.pg-review { background: #f4f1ea; }
+.pg-review:hover, .pg-resume:hover { border-color: var(--action); }
+.pg-review small { display: block; font-size: .8rem; color: var(--muted); font-weight: 400; }
+.pg-review-n {
+  background: var(--action); color: #fff; border-radius: 999px;
+  min-width: 32px; height: 32px; display: inline-flex;
+  align-items: center; justify-content: center; font-weight: 700; flex: none;
+}
+.pg-resume { background: #fff; font-size: .95rem; }
