@@ -296,6 +296,22 @@ html.has-progress #progress-mount { min-height: 168px; }
 .pg-resume { background: #fff; font-size: .95rem; }
 
 
+
+/* ── base rules for the nav button and dock (recovered from 840526b) ──
+   Skipped by the first recovery pass. These sit ahead of the block
+   below on purpose: that block's max-width:800px rule is what turns
+   the button on for phones, and it has to be able to override this. */
+.nav-toggle {
+  display: none; margin-inline-start: auto; flex: 0 0 auto;
+  align-items: center; gap: .45rem;
+  font: inherit; font-size: .95rem; font-weight: 700; cursor: pointer;
+  min-height: 44px; padding: .4rem .8rem;
+  background: #fff; color: var(--ink);
+  border: 1px solid var(--border); border-radius: 10px;
+}
+.wa-dock { position: fixed; inset-inline-end: 1rem; bottom: 1rem; z-index: 40; display: none; }
+.site-nav::-webkit-scrollbar { display: none; }
+
 /* ── recovered from 840526b (mobile nav menu + WhatsApp dock) ──
    Wiped by the scripted styles.css republish (537a017). Restored
    verbatim: this is the version verified 42/42 on 11 pages. */
