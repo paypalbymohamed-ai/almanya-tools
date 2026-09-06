@@ -20,7 +20,8 @@ export default defineConfig({
         about: resolve(__dirname, "about/index.html"),
         contact: resolve(__dirname, "contact/index.html"),
         privacy: resolve(__dirname, "privacy/index.html"),
-        terms: resolve(__dirname, "terms/index.html")
+        terms: resolve(__dirname, "terms/index.html"),
+        vorlagen: resolve(__dirname, "vorlagen/index.html")
       }
     }
   }
