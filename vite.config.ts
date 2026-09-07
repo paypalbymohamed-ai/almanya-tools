@@ -18,6 +18,7 @@ export default defineConfig({
         lernplan: resolve(__dirname, "lernplan/index.html"),
         briefe: resolve(__dirname, "briefe/index.html"),
         wortschatz: resolve(__dirname, "wortschatz/index.html"),
+        goethetelc: resolve(__dirname, "goethe-telc/index.html"),
         about: resolve(__dirname, "about/index.html"),
         contact: resolve(__dirname, "contact/index.html"),
         privacy: resolve(__dirname, "privacy/index.html"),
