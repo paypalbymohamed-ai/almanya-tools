@@ -19,6 +19,7 @@ export default defineConfig({
         briefe: resolve(__dirname, "briefe/index.html"),
         wortschatz: resolve(__dirname, "wortschatz/index.html"),
         goethetelc: resolve(__dirname, "goethe-telc/index.html"),
+        praeteritumperfekt: resolve(__dirname, "praeteritum-perfekt/index.html"),
         about: resolve(__dirname, "about/index.html"),
         contact: resolve(__dirname, "contact/index.html"),
         privacy: resolve(__dirname, "privacy/index.html"),
